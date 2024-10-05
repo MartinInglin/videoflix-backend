@@ -14,10 +14,12 @@ configobj==5.0.6
 constantly==15.1.0
 cryptography==2.8
 dbus-python==1.2.16
+diff-match-patch==20230430
 distro==1.4.0
 distro-info===0.23ubuntu1
 Django==4.2.16
 django-debug-toolbar==4.4.6
+django-import-export==4.1.1
 django-redis==5.4.0
 django-rq==2.10.2
 entrypoints==0.3
@@ -67,6 +69,7 @@ sos==4.4
 sqlparse==0.5.1
 ssh-import-id==5.10
 systemd-python==234
+tablib==3.5.0
 testresources==2.0.1
 Twisted==18.9.0
 typing-extensions==4.12.2
