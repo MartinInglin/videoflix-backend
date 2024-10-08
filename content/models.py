@@ -11,6 +11,10 @@ class Video(models.Model):
     title = models.CharField(max_length=80)
     description = models.CharField(max_length=500)
     video_file = models.FileField(upload_to=video_upload_to, blank=True, null=True)
+    hls_file_360 = models.FileField(max_length=255, blank=True, null=True)
+    hls_file_480 = models.FileField(max_length=255, blank=True, null=True)
+    hls_file_720 = models.FileField(max_length=255, blank=True, null=True)
+    hls_file_1080 = models.FileField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.title

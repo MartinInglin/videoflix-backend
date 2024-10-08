@@ -10,4 +10,16 @@ class VideoResource(resources.ModelResource):
 
 @admin.register(Video)
 class VideoAdmin(ImportExportModelAdmin):
-    pass
+    def get_fields(self, request, obj=None):
+        # When adding a new video, exclude HLS file fields
+        if obj is None:  # Add form
+            return ['title', 'created_at', 'description', 'video_file']
+        else:  # Edit form
+            return ['title', 'created_at', 'description', 'video_file', 'hls_file_360', 'hls_file_480', 'hls_file_720', 'hls_file_1080']
+
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['title', 'video_file', 'hls_file_360', 'hls_file_480', 'hls_file_720', 'hls_file_1080']
+        else:
+            return []

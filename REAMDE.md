@@ -21,3 +21,11 @@ Known Issue:
 Future Improvements:
 
     Support for video uploads from Windows and macOS is under consideration for future development.
+
+
+## Managing Videos
+
+Once a video has been uploaded:
+
+    Title and Video File: These fields cannot be edited. If changes are necessary, the existing video must be deleted, and a new video should be uploaded with the updated details.
+    This approach ensures consistency in video metadata and avoids complications in the system.
