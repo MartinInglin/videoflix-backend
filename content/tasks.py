@@ -1,35 +1,52 @@
 import subprocess
 import os
+import shutil
 
-def convert(source):
-    file_name_no_suffix = create_file_name_no_suffix(source)
-    convert_video(source, file_name_no_suffix, '640x360', '_360p.mp4')
-    convert_video(source, file_name_no_suffix, '854x480', '_480p.mp4')
-    convert_video(source, file_name_no_suffix, '1280x720', '_720p.mp4')
-    convert_video(source, file_name_no_suffix, '1920x1080', '_1080p.mp4')
+def convert(source, folder_path):
 
-def convert_video(source, file_name_no_suffix, resolution, resolution_suffix):
-    new_file_name = file_name_no_suffix + resolution_suffix
-    cmd = '{ffmpeg} -i "{source}" -s {resolution} -c:v libx264 -crf 23 -c:a aac -strict -2 "{file_name}"'.format(
-        ffmpeg="/usr/bin/ffmpeg",
-        source=source,
-        resolution=resolution,
-        file_name=new_file_name
-        )
-    run = subprocess.run(cmd, capture_output=True, text=True, shell=True)
+    base_name = os.path.splitext(os.path.basename(source))[0]
+    output_dir = os.path.join('media', 'videos', folder_path, base_name)
+    os.makedirs(output_dir, exist_ok=True)
 
-def delete_videos(file_path):
-    file_name_no_suffix = create_file_name_no_suffix(file_path)
-    delete_video(file_path, '')
-    delete_video(file_name_no_suffix, '_360p.mp4')
-    delete_video(file_name_no_suffix, '_480p.mp4')
-    delete_video(file_name_no_suffix, '_720p.mp4')
-    delete_video(file_name_no_suffix, '_1080p.mp4')
+    resolutions = {
+        '360p': '640x360',
+        '480p': '854x480',
+        '720p': '1280x720',
+        '1080p': '1920x1080'
+    }
+    
+    for suffix, resolution in resolutions.items():
+        resolution_file = os.path.join(output_dir, f"{base_name}_{suffix}.mp4")
+        convert_to_resolution(source, resolution_file, resolution)
+        
+        hls_prefix = os.path.join(output_dir, f"{base_name}_{suffix}")
+        convert_to_hls(resolution_file, hls_prefix)
 
-def delete_video(file_path, resolution_suffix):
-    file_path = file_path + resolution_suffix
-    if os.path.isfile(file_path):
-        os.remove(file_path)
+        delete_mp4(resolution_file)
 
-def create_file_name_no_suffix(source):
-    return os.path.splitext(source)[0]
+def convert_to_resolution(source, output_name, resolution):
+    cmd = [
+        "/usr/bin/ffmpeg", "-i", source,
+        "-s", resolution, "-c:v", "libx264", "-crf", "23", "-c:a", "aac", "-strict", "-2",
+        output_name
+    ]
+    subprocess.run(cmd, check=True)
+
+def convert_to_hls(source, output_name_prefix):
+    m3u8_file = f"{output_name_prefix}.m3u8"
+    segment_pattern = f"{output_name_prefix}_%03d.ts"
+    cmd = [
+        "/usr/bin/ffmpeg", "-i", source, "-codec", "copy", "-start_number", "0",
+        "-hls_time", "10", "-hls_list_size", "0", "-f", "hls",
+        "-hls_segment_filename", segment_pattern, m3u8_file
+    ]
+    subprocess.run(cmd, check=True)
+
+def delete_mp4(resolution_file):
+    if os.path.exists(resolution_file):
+        os.remove(resolution_file)
+
+def delete_video_folder(folder_path):
+    if os.path.exists(folder_path):
+        shutil.rmtree(folder_path)
+

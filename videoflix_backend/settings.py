@@ -157,8 +157,10 @@ RQ_QUEUES = {
         'PORT': 6379,
         'DB': 0,
         'PASSWORD': 'foobared',
-        'DEFAULT_TIMEOUT': 360,
+        'DEFAULT_TIMEOUT': 36000000,
     },
 }
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
