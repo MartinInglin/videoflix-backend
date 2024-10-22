@@ -5,3 +5,5 @@ media/
 .env
 .env.*
 raw_videos/
+__pycache__/
+*.pyc
