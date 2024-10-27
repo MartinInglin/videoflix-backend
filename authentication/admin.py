@@ -9,12 +9,10 @@ class CustomUserAdmin(admin.ModelAdmin):
     add_form = CustomUserCreationForm
     fieldsets = (
         (
-            'Inidividuelle Daten',
+            'Individual Data',
             {
                 'fields': (
                     'custom',
-                    'phone',
-                    'address',
                 )
             }
         ),
