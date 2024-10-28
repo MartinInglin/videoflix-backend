@@ -25,8 +25,8 @@ from authentication.views import RegistrationView
 urlpatterns = (
     [
         path("admin/", admin.site.urls),
-        path('django-rq/', include('django_rq.urls')),
-        path('registration/', RegistrationView.as_view(), name='registration')
+        path("django-rq/", include("django_rq.urls")),
+        path("registration/", RegistrationView.as_view(), name="registration"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
