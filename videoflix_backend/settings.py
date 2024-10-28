@@ -66,10 +66,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "videoflix_backend.urls"
 
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(SETTINGS_PATH, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,6 +84,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = "videoflix_backend.wsgi.application"
 
 
@@ -93,7 +96,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "videoflix",
         "USER": "martin",
-        "PASSWORD": "einNPWfPost",
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
         "HOST": "localhost",  # Or use your cloud DB host
         "PORT": "5432",
     }
@@ -185,11 +188,11 @@ REST_FRAMEWORK = {
 }
 
 load_dotenv()
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'lx39.hoststar.hosting'  # Replace `#` with your server number
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "lx39.hoststar.hosting"  # Replace `#` with your server number
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True  # Use SSL for port 465
 EMAIL_USE_TLS = False  # Disable TLS, since SSL is enabled
-EMAIL_HOST_USER = 'videoflix@martin-inglin.ch'  # Your full Hoststar email address
+EMAIL_HOST_USER = "videoflix@martin-inglin.ch"  # Your full Hoststar email address
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = 'videoflix@martin-inglin.ch'
+DEFAULT_FROM_EMAIL = "videoflix@martin-inglin.ch"
