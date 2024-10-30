@@ -66,12 +66,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "videoflix_backend.urls"
 
-SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(SETTINGS_PATH, "templates")],
+        # Use BASE_DIR to correctly point to the root-level templates directory
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

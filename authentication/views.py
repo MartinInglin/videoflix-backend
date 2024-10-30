@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
 from authentication.functions import send_verification_email
-from authentication.serializers import RegistrationSerializer
+from authentication.serializers import RegistrationSerializer, VerificationSeriazlizer
 
 
 class RegistrationView(APIView):
@@ -16,7 +16,8 @@ class RegistrationView(APIView):
 
         if serializer.is_valid():
             user = serializer.create()
-            send_verification_email(user)
+            token, created = Token.objects.get_or_create(user=user)
+            send_verification_email(request, user, token.key)
             
             return Response(
                 status=status.HTTP_201_CREATED,
@@ -26,3 +27,11 @@ class RegistrationView(APIView):
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+class VerificationView(APIView):
+    pass
+#     permission_classes = [TokenauthAuthentication]
+
+#     def post(self, request):
+#         serializer = VerificationSeriazlizer(self, data=request.data)
+#         serializer.save()

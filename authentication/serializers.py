@@ -18,10 +18,23 @@ class RegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("error")
 
         else:
-            account = CustomUser(username=username, password=password, email=email)
+            account = CustomUser(
+                username=username, password=password, email=email, is_active=False
+            )
             account.set_password(password)
             account.save()
             return account
 
     def emailExists(self, username):
         return CustomUser.objects.filter(username=username).exists()
+
+
+class VerificationSeriazlizer(serializers.ModelSerializer):
+
+    class Meta:
+        model: CustomUser
+
+    def update(self, instance, validated_data):
+        validated_data.is_authenticated = True
+
+        return super().update(instance, validated_data)
