@@ -32,12 +32,14 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "34.65.54.74",
     "videoflix-backend.martin-inglin.ch",
+    "localhost:4200",
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -185,6 +188,8 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
 
 load_dotenv()
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

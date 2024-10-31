@@ -35,6 +35,6 @@ class VerificationSeriazlizer(serializers.ModelSerializer):
         model: CustomUser
 
     def update(self, instance, validated_data):
-        validated_data.is_authenticated = True
+        validated_data.is_acitvated = True
 
         return super().update(instance, validated_data)
