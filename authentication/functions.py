@@ -15,21 +15,21 @@ def send_verification_email(request, user):
     recipient_list = [user.email]
     send_mail(subject, '', settings.DEFAULT_FROM_EMAIL, recipient_list, html_message=html_message)
 
-def verify_user(token):
-    try:
+# def verify_user(token):
+#     try:
 
-        email = signer.unsign(token, max_age=3600)
-        user = User.objects.get(email=email)
-        user.is_active = True
-        user.save()
+#         email = signer.unsign(token, max_age=3600)
+#         user = User.objects.get(email=email)
+#         user.is_active = True
+#         user.save()
 
-        return True,
+#         return True,
 
-    except (SignatureExpired, BadSignature):
-        return False
+#     except (SignatureExpired, BadSignature):
+#         return False
     
-    except User.DoesNotExist:
-        return False
+#     except User.DoesNotExist:
+#         return False
     
 def get_user_from_token(token):
     try:
@@ -38,3 +38,13 @@ def get_user_from_token(token):
         return user
     except (BadSignature, SignatureExpired):
         return None
+    
+def send_reset_password_email(request, email):
+    user = User.objects.get(email=email)
+
+    token = signer.sign(email)
+    subject = 'Reset Videoflix password'
+    reset_password_url = f'http://127.0.0.1:4200/reset-password/{token}'
+    html_message = render_to_string('reset_password_email.html', {'reset_password_url': reset_password_url})
+    recipient_list = [email]
+    send_mail(subject, '', settings.DEFAULT_FROM_EMAIL, recipient_list, html_message=html_message)
