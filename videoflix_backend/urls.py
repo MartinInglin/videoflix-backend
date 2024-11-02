@@ -22,12 +22,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from debug_toolbar.toolbar import debug_toolbar_urls
 from authentication.views import (
+    CustomLoginView,
     ForgotPassword,
+    LogoutView,
     RegistrationView,
     ResendVerificationEmail,
     ResetPassword,
     VerificationView,
 )
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = (
     [
@@ -43,6 +46,8 @@ urlpatterns = (
         ),
         path("forgot_password/", ForgotPassword.as_view(), name="forgot_password"),
         path("reset_password/", ResetPassword.as_view(), name="reset_password"),
+        path("login/", CustomLoginView.as_view(), name="login"),
+        path("logout/", LogoutView.as_view(), name="logout"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

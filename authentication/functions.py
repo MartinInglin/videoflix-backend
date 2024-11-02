@@ -14,22 +14,6 @@ def send_verification_email(request, user):
     html_message = render_to_string('verification_email.html', {'user': user, 'verification_url': verification_url})
     recipient_list = [user.email]
     send_mail(subject, '', settings.DEFAULT_FROM_EMAIL, recipient_list, html_message=html_message)
-
-# def verify_user(token):
-#     try:
-
-#         email = signer.unsign(token, max_age=3600)
-#         user = User.objects.get(email=email)
-#         user.is_active = True
-#         user.save()
-
-#         return True,
-
-#     except (SignatureExpired, BadSignature):
-#         return False
-    
-#     except User.DoesNotExist:
-#         return False
     
 def get_user_from_token(token):
     try:
