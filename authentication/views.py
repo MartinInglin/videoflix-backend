@@ -65,7 +65,8 @@ class ResendVerificationEmail(APIView):
                 user = User.objects.get(email=identifier)
             except:
                 return Response(
-                    {"message": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST
+                    {"message": "Something went wrong"},
+                    status=status.HTTP_400_BAD_REQUEST,
                 )
         try:
             send_verification_email(request, user)
@@ -116,6 +117,8 @@ class CustomLoginView(ObtainAuthToken):
         if serializer.is_valid():
             user = serializer.validated_data["user"]
 
+            Token.objects.filter(user=user).delete()
+
             token, created = Token.objects.get_or_create(user=user)
 
             data = {
@@ -126,13 +129,17 @@ class CustomLoginView(ObtainAuthToken):
             return Response(data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
 
+
+class LogoutView(APIView):
     def post(self, request):
         try:
             request.user.auth_token.delete()
-            return Response({"message": "Successfully logged out"}, status=status.HTTP_200_OK)
+            return Response(
+                {"message": "Successfully logged out"}, status=status.HTTP_200_OK
+            )
         except Exception as e:
-            return Response({"message": "Something went wrong", "error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"message": "Something went wrong", "error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

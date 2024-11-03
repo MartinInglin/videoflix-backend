@@ -24,8 +24,6 @@ def get_user_from_token(token):
         return None
     
 def send_reset_password_email(request, email):
-    user = User.objects.get(email=email)
-
     token = signer.sign(email)
     subject = 'Reset Videoflix password'
     reset_password_url = f'http://127.0.0.1:4200/reset-password/{token}'

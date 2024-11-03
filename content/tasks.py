@@ -5,9 +5,9 @@ from django.db import transaction
 from content.models import Video
 
 def convert(source, folder_path):
-
+    sanitized_folder_path = folder_path.replace(' ', '_')
     base_name = os.path.splitext(os.path.basename(source))[0]
-    output_dir = os.path.join('media', 'videos', folder_path, 'HLS_files')
+    output_dir = os.path.join('media', 'videos', sanitized_folder_path, 'HLS_files')
     os.makedirs(output_dir, exist_ok=True)
 
     resolutions = {
@@ -62,6 +62,10 @@ def delete_mp4(resolution_file):
         os.remove(resolution_file)
 
 def delete_video_folder(folder_path):
+    if os.path.exists(folder_path):
+        shutil.rmtree(folder_path)
+
+def delete_thumbnail_folder(folder_path):
     if os.path.exists(folder_path):
         shutil.rmtree(folder_path)
 

@@ -55,7 +55,7 @@ class ResetPasswordSerializer(serializers.Serializer):
 
     def validate_token(self, token):
         try:
-            email = signer.unsign(token, max_age=3600)
+            email = signer.unsign(token, max_age=3600*24)
             user = User.objects.get(email=email)
             self.context['user'] = user
             return token
