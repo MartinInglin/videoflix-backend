@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
 from django.contrib import admin
 from django.urls import include, path
@@ -30,7 +31,10 @@ from authentication.views import (
     ResetPassword,
     VerificationView,
 )
-from rest_framework.authtoken.views import obtain_auth_token
+
+from content.views import DashboardView
+
+CACHE_TTL = 60 * 15
 
 urlpatterns = (
     [
@@ -48,6 +52,8 @@ urlpatterns = (
         path("reset_password/", ResetPassword.as_view(), name="reset_password"),
         path("login/", CustomLoginView.as_view(), name="login"),
         path("logout/", LogoutView.as_view(), name="logout"),
+
+        path("dashboard/", cache_page(CACHE_TTL)(DashboardView.as_view()), name="dashboard"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

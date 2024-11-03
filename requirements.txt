@@ -9,6 +9,7 @@ cryptography==2.8
 deprecation==2.1.0
 diff-match-patch==20241021
 Django==4.2.16
+django-cors-headers==4.4.0
 django-debug-toolbar==4.4.6
 django-import-export==4.1.1
 django-redis==5.4.0
@@ -17,6 +18,7 @@ djangorestframework==3.15.2
 idna==2.8
 oauthlib==3.1.0
 packaging==24.1
+pillow==10.4.0
 psycopg2-binary==2.9.10
 pycparser==2.22
 PyJWT==2.9.0
