@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "import_export",
     "rest_framework",
     "rest_framework.authtoken",
+    "watch_history",
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,6 @@ ROOT_URLCONF = "videoflix_backend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # Use BASE_DIR to correctly point to the root-level templates directory
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -155,6 +155,7 @@ CACHES = {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
+            "PASSWORD": "foobared",
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
         "KEY_PREFIX": "videoflix",
@@ -165,7 +166,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-CACHE_TTL = 60 * 15
+CACHE_TTL = 1 #reset to 60 * 15
 
 RQ_QUEUES = {
     "default": {

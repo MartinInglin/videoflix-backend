@@ -25,6 +25,7 @@ class VideoAdmin(ImportExportModelAdmin):
             ]
         else:
             return [
+                "id",
                 "title",
                 "created_at",
                 "description",
@@ -41,6 +42,7 @@ class VideoAdmin(ImportExportModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         if obj:
             return [
+                "id",
                 "title",
                 "video_file",
                 "hls_file_360",
