@@ -31,8 +31,8 @@ from authentication.views import (
     VerificationView,
 )
 
-from content.views import DashboardView, HeroView
-from watch_history.views import GetWatchHistory, UpdateWatchHistory
+from content.views import DashboardView, HeroView, VideoView
+from watch_history.views import UpdateWatchHistory
 
 urlpatterns = (
     [
@@ -52,8 +52,12 @@ urlpatterns = (
         path("logout/", LogoutView.as_view(), name="logout"),
         path("dashboard/", DashboardView.as_view(), name="dashboard"),
         path("hero/", HeroView.as_view(), name="hero"),
-
-        path('update_watch_history/', UpdateWatchHistory.as_view(), name='update_watch_history'),
+        path("video/", VideoView.as_view(), name="video"),
+        path(
+            "update_watch_history/",
+            UpdateWatchHistory.as_view(),
+            name="update_watch_history",
+        ),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -6,7 +5,6 @@ from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from authentication.functions import (
-    get_user_from_token,
     send_reset_password_email,
     send_verification_email,
 )
@@ -27,17 +25,19 @@ class RegistrationView(APIView):
         serializer = RegistrationSerializer(data=request.data)
 
         if serializer.is_valid():
-            user = serializer.create()
-            send_verification_email(request, user)
-
-            return Response(
-                status=status.HTTP_201_CREATED,
-            )
-
+            try:
+                user = serializer.create()
+                send_verification_email(request, user)
+                return Response(status=status.HTTP_201_CREATED)
+            except:
+                return Response(
+                    {
+                        "message": "An error occurred during user creation or email sending."
+                    },
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
         else:
-            return Response(
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class VerificationView(APIView):
@@ -46,11 +46,18 @@ class VerificationView(APIView):
     def post(self, request):
         serializer = UserVerificationSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(
-                {"message": "User successfully verified"}, status=status.HTTP_200_OK
-            )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            try:
+                serializer.save()
+                return Response(
+                    {"message": "User successfully verified."}, status=status.HTTP_200_OK
+                )
+            except:
+                return Response(
+                    {"message": "An error occurred during user verification."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ResendVerificationEmail(APIView):
@@ -58,22 +65,19 @@ class ResendVerificationEmail(APIView):
 
     def post(self, request):
         identifier = request.data.get("identifier")
-        user = get_user_from_token(identifier)
 
-        if not user:
-            try:
-                user = User.objects.get(email=identifier)
-            except:
-                return Response(
-                    {"message": "Something went wrong"},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
         try:
+            user = User.objects.get(email=identifier)
             send_verification_email(request, user)
-            return Response({"message": "Email sent"}, status=status.HTTP_200_OK)
+            return Response(
+                {"message": "If this email exists, a verification email has been sent."},
+                status=status.HTTP_200_OK,
+            )
+
         except:
             return Response(
-                {"message": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST
+                {"message": "Something went wrong."},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
 
@@ -85,10 +89,10 @@ class ForgotPassword(APIView):
 
         try:
             send_reset_password_email(request, email)
-            return Response({"message": "Email sent"}, status=status.HTTP_200_OK)
+            return Response({"message": "Email sent."}, status=status.HTTP_200_OK)
         except:
             return Response(
-                {"message": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST
+                {"message": "Something went wrong."}, status=status.HTTP_400_BAD_REQUEST
             )
 
 
@@ -98,12 +102,19 @@ class ResetPassword(APIView):
     def post(self, request):
         serializer = ResetPasswordSerializer(data=request.data)
         if serializer.is_valid():
-            password = request.data.get("password")
-            serializer.save(password=password)
-            return Response(
-                {"message": "Password successfully reset"}, status=status.HTTP_200_OK
-            )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            try:
+                password = request.data.get("password")
+                serializer.save(password=password)
+                return Response(
+                    {"message": "Password successfully reset."}, status=status.HTTP_200_OK
+                )
+            except:
+                return Response(
+                    {"message": "An error occurred during password reset."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CustomLoginView(ObtainAuthToken):
@@ -115,20 +126,23 @@ class CustomLoginView(ObtainAuthToken):
 
         data = {}
         if serializer.is_valid():
-            user = serializer.validated_data["user"]
-
-            Token.objects.filter(user=user).delete()
-
-            token, created = Token.objects.get_or_create(user=user)
-
-            data = {
-                "email": user.email,
-                "token": token.key,
-            }
-
-            return Response(data, status=status.HTTP_200_OK)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            try:
+                user = serializer.validated_data["user"]
+                Token.objects.filter(user=user).delete()
+                token, created = Token.objects.get_or_create(user=user)
+                data = {
+                    "email": user.email,
+                    "token": token.key,
+                }
+                return Response(data, status=status.HTTP_200_OK)
+            
+            except:
+                return Response(
+                    {"message": "An error occurred during Login."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LogoutView(APIView):

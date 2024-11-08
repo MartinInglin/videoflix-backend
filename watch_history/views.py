@@ -14,31 +14,28 @@ class UpdateWatchHistory(APIView):
 
         if not video_id or timestamp is None:
             return Response(
-                {"error": "Video ID and timestamp are required"},
+                {"error": "Video ID and timestamp are required."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        
+        try:
+            video = Video.objects.get(id=video_id)
+            watch_history, created = WatchHistory.objects.get_or_create(
+                user=user, video=video
+            )
+            watch_history.timestamp = timestamp
+            watch_history.save()
 
-        video = Video.objects.get(id=video_id)
-        watch_history, created = WatchHistory.objects.get_or_create(
-            user=user, video=video
-        )
-        watch_history.timestamp = timestamp
-        watch_history.save()
-
-        return Response({"message": "Watch history updated"}, status=status.HTTP_200_OK)
-
-
-class GetWatchHistory(APIView):
-    def get(self, request):
-        user = request.user
-        watch_history = WatchHistory.objects.filter(user=user).select_related("video")
-        data = [
-            {
-                "video_id": entry.video.id,
-                "title": entry.video.title,
-                "timestamp": entry.timestamp,
-                "last_watched": entry.last_watched,
-            }
-            for entry in watch_history
-        ]
-        return Response(data, status=status.HTTP_200_OK)
+            return Response({"message": "Watch history updated"}, status=status.HTTP_200_OK)
+        
+        except Video.DoesNotExist:
+            return Response(
+                {"error": "Video does not exist."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
+        except Exception:
+            return Response(
+                {"message": "Something went wrong while updating the watch history"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
