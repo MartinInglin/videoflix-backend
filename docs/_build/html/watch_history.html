@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>watch_history package &mdash; videoflix 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=172f29ee"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="watch_history.migrations package" href="watch_history.migrations.html" />
+    <link rel="prev" title="content.migrations package" href="content.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            videoflix
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="videoflix_backend.html">videoflix_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">authentication package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">content package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">watch_history package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html">watch_history.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history.admin">watch_history.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#watch_history.admin.WatchHistoryAdmin"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.admin.WatchHistoryAdmin.fields"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.admin.WatchHistoryAdmin.media"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.admin.WatchHistoryAdmin.readonly_fields"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.readonly_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history.apps">watch_history.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#watch_history.apps.WatchHistoryConfig"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.apps.WatchHistoryConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.apps.WatchHistoryConfig.name"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history.models">watch_history.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#watch_history.models.WatchHistory"><code class="docutils literal notranslate"><span class="pre">WatchHistory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">WatchHistory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">WatchHistory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.get_next_by_last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.get_next_by_last_watched()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.get_previous_by_last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.get_previous_by_last_watched()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.last_watched</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.objects"><code class="docutils literal notranslate"><span class="pre">WatchHistory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.timestamp"><code class="docutils literal notranslate"><span class="pre">WatchHistory.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.user"><code class="docutils literal notranslate"><span class="pre">WatchHistory.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.user_id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.video"><code class="docutils literal notranslate"><span class="pre">WatchHistory.video</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory.video_id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.video_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history.tests">watch_history.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history.views">watch_history.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#watch_history.views.UpdateWatchHistory"><code class="docutils literal notranslate"><span class="pre">UpdateWatchHistory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.views.UpdateWatchHistory.post"><code class="docutils literal notranslate"><span class="pre">UpdateWatchHistory.post()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-watch_history">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">videoflix-backend</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">authentication package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">content package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html">videoflix_backend package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">watch_history package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html">watch_history.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history.admin">watch_history.admin module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.admin.WatchHistoryAdmin"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history.apps">watch_history.apps module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.apps.WatchHistoryConfig"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history.models">watch_history.models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.models.WatchHistory"><code class="docutils literal notranslate"><span class="pre">WatchHistory</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history.tests">watch_history.tests module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history.views">watch_history.views module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watch_history.views.UpdateWatchHistory"><code class="docutils literal notranslate"><span class="pre">UpdateWatchHistory</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-watch_history">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">videoflix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">watch_history package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/watch_history.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="watch-history-package">
+<h1>watch_history package<a class="headerlink" href="#watch-history-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="watch_history.migrations.html">watch_history.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0001_initial">watch_history.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more">watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0003_alter_watchhistory_video">watch_history.migrations.0003_alter_watchhistory_video module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0003_alter_watchhistory_video.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0003_alter_watchhistory_video.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0003_alter_watchhistory_video.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0004_alter_watchhistory_video">watch_history.migrations.0004_alter_watchhistory_video module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0004_alter_watchhistory_video.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0004_alter_watchhistory_video.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0004_alter_watchhistory_video.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0005_alter_watchhistory_video">watch_history.migrations.0005_alter_watchhistory_video module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0005_alter_watchhistory_video.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0005_alter_watchhistory_video.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0005_alter_watchhistory_video.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0006_alter_watchhistory_last_watched">watch_history.migrations.0006_alter_watchhistory_last_watched module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0006_alter_watchhistory_last_watched.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0006_alter_watchhistory_last_watched.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0006_alter_watchhistory_last_watched.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0007_alter_watchhistory_last_watched">watch_history.migrations.0007_alter_watchhistory_last_watched module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0007_alter_watchhistory_last_watched.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0007_alter_watchhistory_last_watched.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0007_alter_watchhistory_last_watched.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0008_alter_watchhistory_last_watched">watch_history.migrations.0008_alter_watchhistory_last_watched module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0008_alter_watchhistory_last_watched.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0008_alter_watchhistory_last_watched.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#watch_history.migrations.0008_alter_watchhistory_last_watched.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-watch_history.admin">
+<span id="watch-history-admin-module"></span><h2>watch_history.admin module<a class="headerlink" href="#module-watch_history.admin" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="watch_history.admin.WatchHistoryAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">watch_history.admin.</span></span><span class="sig-name descname"><span class="pre">WatchHistoryAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.admin.WatchHistoryAdmin" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.admin.WatchHistoryAdmin.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'video',</span> <span class="pre">'timestamp',</span> <span class="pre">'last_watched']</span></em><a class="headerlink" href="#watch_history.admin.WatchHistoryAdmin.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="watch_history.admin.WatchHistoryAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#watch_history.admin.WatchHistoryAdmin.media" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.admin.WatchHistoryAdmin.readonly_fields">
+<span class="sig-name descname"><span class="pre">readonly_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['last_watched']</span></em><a class="headerlink" href="#watch_history.admin.WatchHistoryAdmin.readonly_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-watch_history.apps">
+<span id="watch-history-apps-module"></span><h2>watch_history.apps module<a class="headerlink" href="#module-watch_history.apps" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="watch_history.apps.WatchHistoryConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">watch_history.apps.</span></span><span class="sig-name descname"><span class="pre">WatchHistoryConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.apps.WatchHistoryConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.apps.WatchHistoryConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#watch_history.apps.WatchHistoryConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.apps.WatchHistoryConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'watch_history'</span></em><a class="headerlink" href="#watch_history.apps.WatchHistoryConfig.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-watch_history.models">
+<span id="watch-history-models-module"></span><h2>watch_history.models module<a class="headerlink" href="#module-watch_history.models" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">watch_history.models.</span></span><span class="sig-name descname"><span class="pre">WatchHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_watched</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.models.WatchHistory" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.get_next_by_last_watched">
+<span class="sig-name descname"><span class="pre">get_next_by_last_watched</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">last_watched&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.models.WatchHistory.get_next_by_last_watched" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.get_previous_by_last_watched">
+<span class="sig-name descname"><span class="pre">get_previous_by_last_watched</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">last_watched&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.models.WatchHistory.get_previous_by_last_watched" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.last_watched">
+<span class="sig-name descname"><span class="pre">last_watched</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.last_watched" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#watch_history.models.WatchHistory.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.timestamp" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.user" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.user_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.video">
+<span class="sig-name descname"><span class="pre">video</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.video" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="watch_history.models.WatchHistory.video_id">
+<span class="sig-name descname"><span class="pre">video_id</span></span><a class="headerlink" href="#watch_history.models.WatchHistory.video_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-watch_history.tests">
+<span id="watch-history-tests-module"></span><h2>watch_history.tests module<a class="headerlink" href="#module-watch_history.tests" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-watch_history.views">
+<span id="watch-history-views-module"></span><h2>watch_history.views module<a class="headerlink" href="#module-watch_history.views" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="watch_history.views.UpdateWatchHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">watch_history.views.</span></span><span class="sig-name descname"><span class="pre">UpdateWatchHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.views.UpdateWatchHistory" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="watch_history.views.UpdateWatchHistory.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#watch_history.views.UpdateWatchHistory.post" title="Permalink to this definition"></a></dt>
+<dd><p>This function saves the watch history from a user. It creates or overwrites an existing database entry with the user, video ID and a timestamp.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-watch_history">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-watch_history" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="content.migrations.html" class="btn btn-neutral float-left" title="content.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="watch_history.migrations.html" class="btn btn-neutral float-right" title="watch_history.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Martin Inglin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

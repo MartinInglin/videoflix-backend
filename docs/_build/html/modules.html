@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>videoflix-backend &mdash; videoflix 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=172f29ee"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="manage module" href="manage.html" />
+    <link rel="prev" title="watch_history.migrations package" href="watch_history.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            videoflix
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="videoflix_backend.html">videoflix_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">authentication package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">content package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="watch_history.html">watch_history package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">videoflix-backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">authentication package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">content package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html">videoflix_backend package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html">watch_history package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">videoflix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">videoflix-backend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="videoflix-backend">
+<h1>videoflix-backend<a class="headerlink" href="#videoflix-backend" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">authentication package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.migrations.html">authentication.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.migrations.html#module-authentication.migrations.0001_initial">authentication.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.migrations.html#module-authentication.migrations.0002_remove_customuser_address_remove_customuser_phone">authentication.migrations.0002_remove_customuser_address_remove_customuser_phone module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.migrations.html#module-authentication.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.admin">authentication.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.admin.CustomUserAdmin"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.admin.CustomUserAdmin.add_form"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.add_form</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.admin.CustomUserAdmin.fieldsets"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.fieldsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.admin.CustomUserAdmin.media"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.apps">authentication.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.apps.AuthenticationConfig"><code class="docutils literal notranslate"><span class="pre">AuthenticationConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.apps.AuthenticationConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">AuthenticationConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.apps.AuthenticationConfig.name"><code class="docutils literal notranslate"><span class="pre">AuthenticationConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.forms">authentication.forms module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.forms.CustomUserCreationForm"><code class="docutils literal notranslate"><span class="pre">CustomUserCreationForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.forms.CustomUserCreationForm.Meta"><code class="docutils literal notranslate"><span class="pre">CustomUserCreationForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.forms.CustomUserCreationForm.base_fields"><code class="docutils literal notranslate"><span class="pre">CustomUserCreationForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.forms.CustomUserCreationForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">CustomUserCreationForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.forms.CustomUserCreationForm.media"><code class="docutils literal notranslate"><span class="pre">CustomUserCreationForm.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.functions">authentication.functions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.functions.get_user_from_token"><code class="docutils literal notranslate"><span class="pre">get_user_from_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.functions.send_reset_password_email"><code class="docutils literal notranslate"><span class="pre">send_reset_password_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.functions.send_verification_email"><code class="docutils literal notranslate"><span class="pre">send_verification_email()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.models">authentication.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.models.CustomUser"><code class="docutils literal notranslate"><span class="pre">CustomUser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">CustomUser.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">CustomUser.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.auth_token"><code class="docutils literal notranslate"><span class="pre">CustomUser.auth_token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.custom"><code class="docutils literal notranslate"><span class="pre">CustomUser.custom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.date_joined"><code class="docutils literal notranslate"><span class="pre">CustomUser.date_joined</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.email"><code class="docutils literal notranslate"><span class="pre">CustomUser.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.first_name"><code class="docutils literal notranslate"><span class="pre">CustomUser.first_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.get_next_by_date_joined"><code class="docutils literal notranslate"><span class="pre">CustomUser.get_next_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.get_previous_by_date_joined"><code class="docutils literal notranslate"><span class="pre">CustomUser.get_previous_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.groups"><code class="docutils literal notranslate"><span class="pre">CustomUser.groups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.id"><code class="docutils literal notranslate"><span class="pre">CustomUser.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.is_active"><code class="docutils literal notranslate"><span class="pre">CustomUser.is_active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.is_staff"><code class="docutils literal notranslate"><span class="pre">CustomUser.is_staff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.is_superuser"><code class="docutils literal notranslate"><span class="pre">CustomUser.is_superuser</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.last_login"><code class="docutils literal notranslate"><span class="pre">CustomUser.last_login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.last_name"><code class="docutils literal notranslate"><span class="pre">CustomUser.last_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.logentry_set"><code class="docutils literal notranslate"><span class="pre">CustomUser.logentry_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.password"><code class="docutils literal notranslate"><span class="pre">CustomUser.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.user_permissions"><code class="docutils literal notranslate"><span class="pre">CustomUser.user_permissions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.username"><code class="docutils literal notranslate"><span class="pre">CustomUser.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.models.CustomUser.watchhistory_set"><code class="docutils literal notranslate"><span class="pre">CustomUser.watchhistory_set</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.serializers">authentication.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.serializers.RegistrationSerializer"><code class="docutils literal notranslate"><span class="pre">RegistrationSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.RegistrationSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">RegistrationSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.RegistrationSerializer.create"><code class="docutils literal notranslate"><span class="pre">RegistrationSerializer.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.RegistrationSerializer.emailExists"><code class="docutils literal notranslate"><span class="pre">RegistrationSerializer.emailExists()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.serializers.ResetPasswordSerializer"><code class="docutils literal notranslate"><span class="pre">ResetPasswordSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.ResetPasswordSerializer.save"><code class="docutils literal notranslate"><span class="pre">ResetPasswordSerializer.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.ResetPasswordSerializer.validate_token"><code class="docutils literal notranslate"><span class="pre">ResetPasswordSerializer.validate_token()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.serializers.UserVerificationSerializer"><code class="docutils literal notranslate"><span class="pre">UserVerificationSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.UserVerificationSerializer.save"><code class="docutils literal notranslate"><span class="pre">UserVerificationSerializer.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.serializers.UserVerificationSerializer.validate_token"><code class="docutils literal notranslate"><span class="pre">UserVerificationSerializer.validate_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.tests">authentication.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication.views">authentication.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.CustomLoginView"><code class="docutils literal notranslate"><span class="pre">CustomLoginView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.CustomLoginView.permission_classes"><code class="docutils literal notranslate"><span class="pre">CustomLoginView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.CustomLoginView.post"><code class="docutils literal notranslate"><span class="pre">CustomLoginView.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.ForgotPassword"><code class="docutils literal notranslate"><span class="pre">ForgotPassword</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ForgotPassword.permission_classes"><code class="docutils literal notranslate"><span class="pre">ForgotPassword.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ForgotPassword.post"><code class="docutils literal notranslate"><span class="pre">ForgotPassword.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.LogoutView"><code class="docutils literal notranslate"><span class="pre">LogoutView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.LogoutView.post"><code class="docutils literal notranslate"><span class="pre">LogoutView.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.RegistrationView"><code class="docutils literal notranslate"><span class="pre">RegistrationView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.RegistrationView.permission_classes"><code class="docutils literal notranslate"><span class="pre">RegistrationView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.RegistrationView.post"><code class="docutils literal notranslate"><span class="pre">RegistrationView.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.ResendVerificationEmail"><code class="docutils literal notranslate"><span class="pre">ResendVerificationEmail</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ResendVerificationEmail.permission_classes"><code class="docutils literal notranslate"><span class="pre">ResendVerificationEmail.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ResendVerificationEmail.post"><code class="docutils literal notranslate"><span class="pre">ResendVerificationEmail.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.ResetPassword"><code class="docutils literal notranslate"><span class="pre">ResetPassword</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ResetPassword.permission_classes"><code class="docutils literal notranslate"><span class="pre">ResetPassword.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.ResetPassword.post"><code class="docutils literal notranslate"><span class="pre">ResetPassword.post()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#authentication.views.VerificationView"><code class="docutils literal notranslate"><span class="pre">VerificationView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.VerificationView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VerificationView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#authentication.views.VerificationView.post"><code class="docutils literal notranslate"><span class="pre">VerificationView.post()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#module-authentication">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">content package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.migrations.html">content.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0001_initial">content.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0002_video_hls_playlist_alter_video_video_file">content.migrations.0002_video_hls_playlist_alter_video_video_file module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0003_alter_video_hls_playlist">content.migrations.0003_alter_video_hls_playlist module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0004_rename_hls_playlist_video_hls_file_1080_and_more">content.migrations.0004_rename_hls_playlist_video_hls_file_1080_and_more module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0005_video_teaser_video_thumbnail">content.migrations.0005_video_teaser_video_thumbnail module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations.0006_video_category">content.migrations.0006_video_category module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.migrations.html#module-content.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.admin">content.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.admin.VideoAdmin"><code class="docutils literal notranslate"><span class="pre">VideoAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.admin.VideoAdmin.get_fields"><code class="docutils literal notranslate"><span class="pre">VideoAdmin.get_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.admin.VideoAdmin.get_readonly_fields"><code class="docutils literal notranslate"><span class="pre">VideoAdmin.get_readonly_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.admin.VideoAdmin.media"><code class="docutils literal notranslate"><span class="pre">VideoAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.admin.VideoResource"><code class="docutils literal notranslate"><span class="pre">VideoResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.admin.VideoResource.Meta"><code class="docutils literal notranslate"><span class="pre">VideoResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.admin.VideoResource.fields"><code class="docutils literal notranslate"><span class="pre">VideoResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.apps">content.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.apps.ContentConfig"><code class="docutils literal notranslate"><span class="pre">ContentConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.apps.ContentConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ContentConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.apps.ContentConfig.name"><code class="docutils literal notranslate"><span class="pre">ContentConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.apps.ContentConfig.ready"><code class="docutils literal notranslate"><span class="pre">ContentConfig.ready()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.functions">content.functions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_category_videos"><code class="docutils literal notranslate"><span class="pre">get_category_videos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_latest_video"><code class="docutils literal notranslate"><span class="pre">get_latest_video()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_latest_views"><code class="docutils literal notranslate"><span class="pre">get_latest_views()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_my_videos"><code class="docutils literal notranslate"><span class="pre">get_my_videos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_selected_video"><code class="docutils literal notranslate"><span class="pre">get_selected_video()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.functions.get_video"><code class="docutils literal notranslate"><span class="pre">get_video()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.models">content.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.models.Video"><code class="docutils literal notranslate"><span class="pre">Video</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.CATEGORY_CHOICES"><code class="docutils literal notranslate"><span class="pre">Video.CATEGORY_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Video.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Video.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.category"><code class="docutils literal notranslate"><span class="pre">Video.category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.created_at"><code class="docutils literal notranslate"><span class="pre">Video.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.description"><code class="docutils literal notranslate"><span class="pre">Video.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.get_category_display"><code class="docutils literal notranslate"><span class="pre">Video.get_category_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Video.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Video.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.hls_file_1080"><code class="docutils literal notranslate"><span class="pre">Video.hls_file_1080</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.hls_file_360"><code class="docutils literal notranslate"><span class="pre">Video.hls_file_360</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.hls_file_480"><code class="docutils literal notranslate"><span class="pre">Video.hls_file_480</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.hls_file_720"><code class="docutils literal notranslate"><span class="pre">Video.hls_file_720</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.id"><code class="docutils literal notranslate"><span class="pre">Video.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.objects"><code class="docutils literal notranslate"><span class="pre">Video.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.teaser"><code class="docutils literal notranslate"><span class="pre">Video.teaser</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.thumbnail"><code class="docutils literal notranslate"><span class="pre">Video.thumbnail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.title"><code class="docutils literal notranslate"><span class="pre">Video.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.video_file"><code class="docutils literal notranslate"><span class="pre">Video.video_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.models.Video.watchhistory_set"><code class="docutils literal notranslate"><span class="pre">Video.watchhistory_set</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.models.thumbnail_upload_to"><code class="docutils literal notranslate"><span class="pre">thumbnail_upload_to()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.models.video_upload_to"><code class="docutils literal notranslate"><span class="pre">video_upload_to()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.serializers">content.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.serializers.DashboardVideoSerializer"><code class="docutils literal notranslate"><span class="pre">DashboardVideoSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.serializers.DashboardVideoSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">DashboardVideoSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.serializers.HeroVideoSerializer"><code class="docutils literal notranslate"><span class="pre">HeroVideoSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.serializers.HeroVideoSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">HeroVideoSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.serializers.VideoSerializer"><code class="docutils literal notranslate"><span class="pre">VideoSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.serializers.VideoSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">VideoSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.serializers.VideoSerializer.get_hls_file"><code class="docutils literal notranslate"><span class="pre">VideoSerializer.get_hls_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.serializers.VideoSerializer.get_timestamp"><code class="docutils literal notranslate"><span class="pre">VideoSerializer.get_timestamp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.signals">content.signals module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.signals.thumbnail_post_delete"><code class="docutils literal notranslate"><span class="pre">thumbnail_post_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.signals.video_post_delete"><code class="docutils literal notranslate"><span class="pre">video_post_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.signals.video_post_save"><code class="docutils literal notranslate"><span class="pre">video_post_save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.tasks">content.tasks module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.convert_to_hls"><code class="docutils literal notranslate"><span class="pre">convert_to_hls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.convert_to_resolution"><code class="docutils literal notranslate"><span class="pre">convert_to_resolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.create_output_directory"><code class="docutils literal notranslate"><span class="pre">create_output_directory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.delete_mp4"><code class="docutils literal notranslate"><span class="pre">delete_mp4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.delete_thumbnail_folder"><code class="docutils literal notranslate"><span class="pre">delete_thumbnail_folder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.delete_video_folder"><code class="docutils literal notranslate"><span class="pre">delete_video_folder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.tasks.process_resolution"><code class="docutils literal notranslate"><span class="pre">process_resolution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.tests">content.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content.views">content.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.views.DashboardView"><code class="docutils literal notranslate"><span class="pre">DashboardView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.DashboardView.dispatch"><code class="docutils literal notranslate"><span class="pre">DashboardView.dispatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.DashboardView.get"><code class="docutils literal notranslate"><span class="pre">DashboardView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.views.HeroView"><code class="docutils literal notranslate"><span class="pre">HeroView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.HeroView.dispatch"><code class="docutils literal notranslate"><span class="pre">HeroView.dispatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.HeroView.get"><code class="docutils literal notranslate"><span class="pre">HeroView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="content.html#content.views.VideoView"><code class="docutils literal notranslate"><span class="pre">VideoView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.VideoView.dispatch"><code class="docutils literal notranslate"><span class="pre">VideoView.dispatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="content.html#content.views.VideoView.get"><code class="docutils literal notranslate"><span class="pre">VideoView.get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="content.html#module-content">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manage.html#manage.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="videoflix_backend.html">videoflix_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#module-videoflix_backend.asgi">videoflix_backend.asgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#module-videoflix_backend.settings">videoflix_backend.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#module-videoflix_backend.urls">videoflix_backend.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#module-videoflix_backend.wsgi">videoflix_backend.wsgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videoflix_backend.html#module-videoflix_backend">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="watch_history.html">watch_history package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.migrations.html">watch_history.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0001_initial">watch_history.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more">watch_history.migrations.0002_remove_watchhistory_videos_watchhistory_last_watched_and_more module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0003_alter_watchhistory_video">watch_history.migrations.0003_alter_watchhistory_video module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0004_alter_watchhistory_video">watch_history.migrations.0004_alter_watchhistory_video module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0005_alter_watchhistory_video">watch_history.migrations.0005_alter_watchhistory_video module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0006_alter_watchhistory_last_watched">watch_history.migrations.0006_alter_watchhistory_last_watched module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0007_alter_watchhistory_last_watched">watch_history.migrations.0007_alter_watchhistory_last_watched module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations.0008_alter_watchhistory_last_watched">watch_history.migrations.0008_alter_watchhistory_last_watched module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.migrations.html#module-watch_history.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history.admin">watch_history.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.html#watch_history.admin.WatchHistoryAdmin"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.admin.WatchHistoryAdmin.fields"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.admin.WatchHistoryAdmin.media"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.admin.WatchHistoryAdmin.readonly_fields"><code class="docutils literal notranslate"><span class="pre">WatchHistoryAdmin.readonly_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history.apps">watch_history.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.html#watch_history.apps.WatchHistoryConfig"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.apps.WatchHistoryConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.apps.WatchHistoryConfig.name"><code class="docutils literal notranslate"><span class="pre">WatchHistoryConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history.models">watch_history.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory"><code class="docutils literal notranslate"><span class="pre">WatchHistory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">WatchHistory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">WatchHistory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.get_next_by_last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.get_next_by_last_watched()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.get_previous_by_last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.get_previous_by_last_watched()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.last_watched"><code class="docutils literal notranslate"><span class="pre">WatchHistory.last_watched</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.objects"><code class="docutils literal notranslate"><span class="pre">WatchHistory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.timestamp"><code class="docutils literal notranslate"><span class="pre">WatchHistory.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.user"><code class="docutils literal notranslate"><span class="pre">WatchHistory.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.user_id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.video"><code class="docutils literal notranslate"><span class="pre">WatchHistory.video</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.models.WatchHistory.video_id"><code class="docutils literal notranslate"><span class="pre">WatchHistory.video_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history.tests">watch_history.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history.views">watch_history.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="watch_history.html#watch_history.views.UpdateWatchHistory"><code class="docutils literal notranslate"><span class="pre">UpdateWatchHistory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="watch_history.html#watch_history.views.UpdateWatchHistory.post"><code class="docutils literal notranslate"><span class="pre">UpdateWatchHistory.post()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="watch_history.html#module-watch_history">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="watch_history.migrations.html" class="btn btn-neutral float-left" title="watch_history.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manage.html" class="btn btn-neutral float-right" title="manage module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Martin Inglin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
