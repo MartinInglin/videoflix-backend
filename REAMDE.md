@@ -87,11 +87,13 @@ python manage.py createsuperuser
 - `/api/forgot_password/` - POST - Sends email to reset password.
 - `/api/reset_password/` - POST - Resets a password.
 - `/api/login/` - POST - Logs in a user.
-- `/api/logout/` - POST - Logs out a user.
-- `/api/dashboard/` - GET - Gets the data for the dashboard.
-- `/api/hero/` - GET - Gets the data for the hero section.
-- `/api/video/<id>/` - GET - Gets the data for a video.
-- `/api/update_watch_history/<id>/<resolution>` - POST - Updates the watch history of a user.
+- `/api/logout/` - POST - Logs out a user.*
+- `/api/dashboard/` - GET - Gets the data for the dashboard.*
+- `/api/hero/` - GET - Gets the data for the hero section.*
+- `/api/video/<id>/` - GET - Gets the data for a video.*
+- `/api/update_watch_history/<id>/<resolution>` - POST - Updates the watch history of a user.*
+
+*authentication token required
 
 
 ## Managing Videos
