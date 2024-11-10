@@ -33,7 +33,6 @@ ALLOWED_HOSTS = [
     "34.65.54.74",
     "videoflix-backend.martin-inglin.ch",
     "localhost:4200",
-    "127.0.0.1:4200"
 ]
 
 
@@ -190,7 +189,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
+CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
 
 load_dotenv()
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
