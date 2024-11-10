@@ -1,9 +1,9 @@
-## Project Overview
+## Project overview
 
 This backend provides API endpoints for managing video uploads, encoding videos to multiple resolutions, tracking user watch history, and handling user registration, login / logout, email verification and password reset. It is built with Django and designed to support a video streaming platform.
 
 
-## System Requirements
+## System requirements
 
 - Python 3.x
 - Redis
@@ -96,7 +96,7 @@ python manage.py createsuperuser
 *authentication token required
 
 
-## Managing Videos
+## Managing videos
 
 To add a video, run the server and open it in the browser. Click on videos / add video.
 
@@ -107,6 +107,10 @@ Once a video has been uploaded:
     Title and Video File: These fields cannot be edited. If changes are necessary, the existing video must be deleted, and a new video should be uploaded with the updated details.
     This approach ensures consistency in video metadata and avoids complications in the system.
 
+
+## Managing users
+
+When registrating a user, please make sure that the username and email are equal. As in the front end only the email is asked during registration, the email is set as the username which then will be used for the login process.
 
 ## Running tests
 
