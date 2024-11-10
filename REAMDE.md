@@ -1,3 +1,8 @@
+## Project Overview
+
+This backend provides API endpoints for managing video uploads, encoding videos to multiple resolutions, tracking user watch history, and handling user registration, login / logout, email verification and password reset. It is built with Django and designed to support a video streaming platform.
+
+
 ## System Requirements
 
 - Python 3.x
@@ -10,22 +15,101 @@ To install FFmpeg on Ubuntu:
 sudo apt install ffmpeg
 ```
 
-## Video Upload Limitations
 
-Currently, the application only supports video uploads from Linux-based systems. This limitation is due to differences in file system paths and permissions when uploading videos from non-Linux operating systems (such as Windows or macOS).
+## Installation
 
-Known Issue:
+1. Clone the repository:
+   
+```bash
+git clone https://github.com/MartinInglin/videoflix-backend
+cd videoflix-backend
+```
+2. Set up a virtual environment
+   
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
-    Uploads from Windows or macOS systems: Attempting to upload videos from these operating systems may result in file path issues or permission errors. For now, ensure that video files are uploaded from a Linux environment.
 
-Future Improvements:
+## Environment variables
+Create a `.env` file in the root directory and add the following environment variables:
 
-    Support for video uploads from Windows and macOS is under consideration for future development.
+EMAIL_HOST_PASSWORD=
+DATABASE_PASSWORD=
+REDIS_PASSWORD=
+RQ_PASSWORD=
+
+
+## Running the application
+
+To start the development server, run:
+
+```bash
+python manage.py runserver
+```
+
+Make sure Redis is running for background tasks:
+
+```bash
+redis-server
+```
+
+To start the RQ worker for processing tasks:
+
+```bash
+python manage.py rqworker
+```
+
+
+## Database setup
+
+Apply database migrations:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Create a superuser to access the Django admin:
+
+```bash
+python manage.py createsuperuser
+```
+
+
+## API endpoints
+
+- `/api/registration/` - POST - Create a new user.
+- `/api/verification/` - POST - Save the verification of a user.
+- `/api/resend_verifiction/` - POST - Resends a verification email.
+- `/api/forgot_password/` - POST - Sends email to reset password.
+- `/api/reset_password/` - POST - Resets a password.
+- `/api/login/` - POST - Logs in a user.
+- `/api/logout/` - POST - Logs out a user.
+- `/api/dashboard/` - GET - Gets the data for the dashboard.
+- `/api/hero/` - GET - Gets the data for the hero section.
+- `/api/video/<id>/` - GET - Gets the data for a video.
+- `/api/update_watch_history/<id>/<resolution>` - POST - Updates the watch history of a user.
 
 
 ## Managing Videos
+
+To add a video, run the server and open it in the browser. Click on videos / add video.
+
+To add a new video category add it in content/models.py in the video model to the array CATEGORY_CHOICES.
 
 Once a video has been uploaded:
 
     Title and Video File: These fields cannot be edited. If changes are necessary, the existing video must be deleted, and a new video should be uploaded with the updated details.
     This approach ensures consistency in video metadata and avoids complications in the system.
+
+
+## Running tests
+
+Run the Django test suite with:
+
+```bash
+python manage.py test
+```

@@ -21,6 +21,9 @@ CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 @method_decorator(cache_page(CACHE_TTL), name="dispatch")
 class DashboardView(APIView):
     def get(self, request):
+        """
+        This function returns the data for the dashboard. It gets the 6 latest videos, the videos the user has watched, all the categories and the videos sorted by categories.
+        """
         try:
             latest_videos = get_latest_views()
             my_videos = get_my_videos(request)
@@ -47,6 +50,9 @@ class DashboardView(APIView):
 @method_decorator(cache_page(CACHE_TTL), name="dispatch")
 class HeroView(APIView):
     def get(self, request):
+        """
+        This function returns the data for the hero area. If the user is new on the page, the latest video is returned, else the selected video.
+        """
         video_id = request.query_params.get("id")
 
         if video_id == "-1":
@@ -73,6 +79,9 @@ class HeroView(APIView):
 @method_decorator(cache_page(CACHE_TTL), name="dispatch")
 class VideoView(APIView):
     def get(self, request):
+        """
+        This function returns the video data for the actual video the user wants to watch. It returns the m3u8 file based on the given resolution.
+        """
         video_id = request.query_params.get("id")
         user = request.user
         resolution = request.query_params.get("resolution")

@@ -22,6 +22,9 @@ class RegistrationView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        """
+        This function creates a new user if the serializer is valid and sends a verification email.
+        """
         serializer = RegistrationSerializer(data=request.data)
 
         if serializer.is_valid():
@@ -44,12 +47,16 @@ class VerificationView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        """
+        This function saves the verification of the user if the serializer is valid.
+        """
         serializer = UserVerificationSerializer(data=request.data)
         if serializer.is_valid():
             try:
                 serializer.save()
                 return Response(
-                    {"message": "User successfully verified."}, status=status.HTTP_200_OK
+                    {"message": "User successfully verified."},
+                    status=status.HTTP_200_OK,
                 )
             except:
                 return Response(
@@ -64,13 +71,18 @@ class ResendVerificationEmail(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        identifier = request.data.get("identifier")
+        """
+        This function resends the verification email.
+        """
+        email = request.data.get("email")
 
         try:
-            user = User.objects.get(email=identifier)
+            user = User.objects.get(email=email)
             send_verification_email(request, user)
             return Response(
-                {"message": "If this email exists, a verification email has been sent."},
+                {
+                    "message": "If this email exists, a verification email has been sent."
+                },
                 status=status.HTTP_200_OK,
             )
 
@@ -85,6 +97,9 @@ class ForgotPassword(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        """
+        This function sends the reset password email to the user.
+        """
         email = request.data.get("email")
 
         try:
@@ -100,13 +115,17 @@ class ResetPassword(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        """
+        This function saves the reset the password if the serializer is valid.
+        """
         serializer = ResetPasswordSerializer(data=request.data)
         if serializer.is_valid():
             try:
                 password = request.data.get("password")
                 serializer.save(password=password)
                 return Response(
-                    {"message": "Password successfully reset."}, status=status.HTTP_200_OK
+                    {"message": "Password successfully reset."},
+                    status=status.HTTP_200_OK,
                 )
             except:
                 return Response(
@@ -121,7 +140,9 @@ class CustomLoginView(ObtainAuthToken):
     permission_classes = [AllowAny]
 
     def post(self, request):
-
+        """
+        This function logs the user in fi the serializer is vaild. Therefore the email and password are checked. If success the user email and token are returned.
+        """
         serializer = self.serializer_class(data=request.data)
 
         data = {}
@@ -135,7 +156,7 @@ class CustomLoginView(ObtainAuthToken):
                     "token": token.key,
                 }
                 return Response(data, status=status.HTTP_200_OK)
-            
+
             except:
                 return Response(
                     {"message": "An error occurred during Login."},
@@ -147,6 +168,9 @@ class CustomLoginView(ObtainAuthToken):
 
 class LogoutView(APIView):
     def post(self, request):
+        """
+        This function logs out the user by deleting the token.
+        """
         try:
             request.user.auth_token.delete()
             return Response(

@@ -8,12 +8,18 @@ from watch_history.models import WatchHistory
 
 
 def get_latest_views():
+    """
+    This function gets the 6 latest videos and serializes them.
+    """
     latest_videos = Video.objects.order_by("-created_at")[:6]
     latest_videos_serialized = DashboardVideoSerializer(latest_videos, many=True).data
     return latest_videos_serialized
 
 
 def get_my_videos(request):
+    """
+    This function gets the videos the user has partly watched and serializes them.
+    """
     watch_history = WatchHistory.objects.filter(user=request.user).select_related(
         "video"
     )
@@ -24,6 +30,9 @@ def get_my_videos(request):
 
 
 def get_category_videos(categories):
+    """
+    This function goes through the videos and returns all categories.
+    """
     category_videos = {}
     for category in categories:
         videos = Video.objects.filter(category=category)
@@ -32,6 +41,9 @@ def get_category_videos(categories):
 
 
 def get_latest_video():
+    """
+    This function gets the newest video on the database and serializes it.
+    """
     latest_video = Video.objects.order_by("created_at").first()
     video = latest_video
     serializer = HeroVideoSerializer(video)
@@ -39,12 +51,18 @@ def get_latest_video():
 
 
 def get_selected_video(video_id):
+    """
+    This function gets the video for the her section and serializes it.
+    """
     video = Video.objects.get(id=video_id)
     serializer = HeroVideoSerializer(video)
     return serializer.data
 
 
 def get_video(video_id, user, resolution):
+    """
+    This function gets the video the user picks and serializes it.
+    """
     video = Video.objects.get(id=video_id)
     serializer = VideoSerializer(
         video, context={"user": user, "resolution": resolution}

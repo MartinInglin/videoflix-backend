@@ -13,6 +13,9 @@ class VideoResource(resources.ModelResource):
 @admin.register(Video)
 class VideoAdmin(ImportExportModelAdmin):
     def get_fields(self, request, obj=None):
+        """
+        This function determines what fields are displayed when adding a new video and editing a video.
+        """
         if obj is None:
             return [
                 "title",
@@ -40,6 +43,9 @@ class VideoAdmin(ImportExportModelAdmin):
             ]
 
     def get_readonly_fields(self, request, obj=None):
+        """
+        This function determines what fields are read only.
+        """
         if obj:
             return [
                 "id",

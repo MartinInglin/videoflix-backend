@@ -15,6 +15,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
         fields = ["email", "password"]
 
     def create(self):
+        """
+        This function checks first if an email already exists in the database. If not it creates a new account as a custom user and returns it.
+        """
         username = self.validated_data["email"]
         email = self.validated_data["email"]
         password = self.validated_data["password"]
@@ -31,13 +34,19 @@ class RegistrationSerializer(serializers.ModelSerializer):
             return account
 
     def emailExists(self, username):
+        """
+        This function checks if an email address already exists in the database. The username is needed because the username is equal the email address and django checks the username in the login process.
+        """
         return CustomUser.objects.filter(username=username).exists()
-    
+
 
 class UserVerificationSerializer(serializers.Serializer):
     token = serializers.CharField()
 
     def validate_token(self, token):
+        """
+        This function validates the token for the user verification. If it is older than 1 hour the token has expired.
+        """
         try:
             email = signer.unsign(token, max_age=3600)
             user = User.objects.get(email=email)
@@ -46,30 +55,35 @@ class UserVerificationSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid or expired token.")
 
     def save(self):
+        """
+        This function sets the is_active variable on the user to true. It is needed to verify the email address.
+        """
         user = self.validated_data.get("token")
         user.is_active = True
         user.save()
+
 
 class ResetPasswordSerializer(serializers.Serializer):
     token = serializers.CharField()
 
     def validate_token(self, token):
+        """
+        This function validates the token for the password reset. If it is older than 24 hours the token has expired.
+        """
         try:
-            email = signer.unsign(token, max_age=3600*24)
+            email = signer.unsign(token, max_age=3600 * 24)
             user = User.objects.get(email=email)
-            self.context['user'] = user
+            self.context["user"] = user
             return token
         except (SignatureExpired, BadSignature, User.DoesNotExist):
             raise serializers.ValidationError("Invalid or expired token.")
-        
+
     def save(self, **kwargs):
+        """
+        This function saves the newly set password.
+        """
         user = self.context.get("user")
         password = kwargs.get("password")
         if user and password:
             user.set_password(password)
             user.save()
-
-
-
-
-
