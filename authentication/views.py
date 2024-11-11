@@ -67,7 +67,7 @@ class VerificationView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ResendVerificationEmail(APIView):
+class ResendVerificationEmailView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -93,7 +93,7 @@ class ResendVerificationEmail(APIView):
             )
 
 
-class ForgotPassword(APIView):
+class ForgotPasswordView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -103,6 +103,7 @@ class ForgotPassword(APIView):
         email = request.data.get("email")
 
         try:
+            User.objects.get(email=email)
             send_reset_password_email(request, email)
             return Response({"message": "Email sent."}, status=status.HTTP_200_OK)
         except:
@@ -111,7 +112,7 @@ class ForgotPassword(APIView):
             )
 
 
-class ResetPassword(APIView):
+class ResetPasswordView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -122,11 +123,14 @@ class ResetPassword(APIView):
         if serializer.is_valid():
             try:
                 password = request.data.get("password")
-                serializer.save(password=password)
-                return Response(
-                    {"message": "Password successfully reset."},
-                    status=status.HTTP_200_OK,
-                )
+                if password:
+                    serializer.save(password=password)
+                    return Response(
+                        {"message": "Password successfully reset."},
+                        status=status.HTTP_200_OK,
+                    )
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             except:
                 return Response(
                     {"message": "An error occurred during password reset."},
@@ -141,7 +145,7 @@ class CustomLoginView(ObtainAuthToken):
 
     def post(self, request):
         """
-        This function logs the user in fi the serializer is vaild. Therefore the email and password are checked. If success the user email and token are returned.
+        This function logs the user in if the serializer is vaild. Therefore the email and password are checked. If success the user email and token are returned.
         """
         serializer = self.serializer_class(data=request.data)
 
@@ -179,5 +183,5 @@ class LogoutView(APIView):
         except Exception as e:
             return Response(
                 {"message": "Something went wrong", "error": str(e)},
-                status=status.HTTP_400_BAD_REQUEST,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )

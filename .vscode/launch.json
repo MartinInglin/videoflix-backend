@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Django RUN",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload",
+                "--nothreading"
+            ],
+            "django": true
+        },
+        {
+            "name": "Django auth TEST",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "authentication.tests",
+            ],
+            "django": true,
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "videoflix_backend.settings"
+            }
+        },
+        {
+            "name": "Django Specific Test",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "authentication.tests.test_views.test_register_view.RegistrationTests.test_email_sending_failure"
+            ],
+            "django": true,
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "videoflix_backend.settings"
+            }
+        }
+    ]
+}

@@ -119,3 +119,5 @@ Run the Django test suite with:
 ```bash
 python manage.py test
 ```
+
+To run tests with a debugger use the python debugger. Adjust launch.json to access specific tests or test groups.

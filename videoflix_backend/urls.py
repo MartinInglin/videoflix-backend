@@ -23,11 +23,11 @@ from django.conf.urls.static import static
 from debug_toolbar.toolbar import debug_toolbar_urls
 from authentication.views import (
     CustomLoginView,
-    ForgotPassword,
+    ForgotPasswordView,
     LogoutView,
     RegistrationView,
-    ResendVerificationEmail,
-    ResetPassword,
+    ResendVerificationEmailView,
+    ResetPasswordView,
     VerificationView,
 )
 
@@ -43,11 +43,11 @@ urlpatterns = (
         path("verification/", VerificationView.as_view(), name="verification"),
         path(
             "resend_verifiction/",
-            ResendVerificationEmail.as_view(),
+            ResendVerificationEmailView.as_view(),
             name="resend_verification",
         ),
-        path("forgot_password/", ForgotPassword.as_view(), name="forgot_password"),
-        path("reset_password/", ResetPassword.as_view(), name="reset_password"),
+        path("forgot_password/", ForgotPasswordView.as_view(), name="forgot_password"),
+        path("reset_password/", ResetPasswordView.as_view(), name="reset_password"),
         path("login/", CustomLoginView.as_view(), name="login"),
         path("logout/", LogoutView.as_view(), name="logout"),
         path("dashboard/", DashboardView.as_view(), name="dashboard"),

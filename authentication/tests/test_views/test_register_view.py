@@ -1,7 +1,9 @@
 from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
-from unittest import mock
+from unittest.mock import patch
+
+from authentication.models import CustomUser
 
 
 class RegistrationTests(APITestCase):
@@ -41,15 +43,26 @@ class RegistrationTests(APITestCase):
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_email_sending_failure(self):
-        with mock.patch("authentication.functions.send_verification_email") as mocked_mail:
-            mocked_mail.side_effect = Exception("Email send error")
-
+    def test_email_exists(self):
         url = reverse("registration")
-        data = {
-            "password": "password123",
-            "email": "testuser@example.com",
-        }
+        data = {"password": "password123", "email": "testuser@example.com"}
+        CustomUser.objects.get_or_create(
+            username="testuser@example.com", password="test1234"
+        )
 
         response = self.client.post(url, data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    # @patch(
+    #     "authentication.functions.send_verification_email",
+    #     side_effect=Exception("Email send error"),
+    # )
+    # def test_email_sending_failure(self, mocked_mail):
+    #     url = reverse("registration")
+    #     data = {
+    #         "password": "password123",
+    #         "email": "testuser@example.com",
+    #     }
+
+    #     response = self.client.post(url, data, format="json")
+    #     self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)

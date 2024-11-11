@@ -22,22 +22,24 @@ class RegistrationSerializer(serializers.ModelSerializer):
         email = self.validated_data["email"]
         password = self.validated_data["password"]
 
-        if self.emailExists(username):
-            raise serializers.ValidationError("error")
+        # if self.emailExists(username):
+        #     raise serializers.ValidationError("error")
 
-        else:
-            account = CustomUser(
-                username=username, password=password, email=email, is_active=False
-            )
-            account.set_password(password)
-            account.save()
-            return account
+        # else:
+        account = CustomUser(
+            username=username, password=password, email=email, is_active=False
+        )
+        account.set_password(password)
+        account.save()
+        return account
 
-    def emailExists(self, username):
+    def validate_email(self, username):
         """
         This function checks if an email address already exists in the database. The username is needed because the username is equal the email address and django checks the username in the login process.
         """
-        return CustomUser.objects.filter(username=username).exists()
+        if CustomUser.objects.filter(username=username).exists():
+            raise serializers.ValidationError("error")
+        return username
 
 
 class UserVerificationSerializer(serializers.Serializer):
@@ -50,17 +52,21 @@ class UserVerificationSerializer(serializers.Serializer):
         try:
             email = signer.unsign(token, max_age=3600)
             user = User.objects.get(email=email)
-            return user
-        except (SignatureExpired, BadSignature, User.DoesNotExist):
+            self.context['user'] = user
+            return token
+        except (SignatureExpired, BadSignature, User.DoesNotExist) as e:
+            print(f"Validation failed: {e}")
             raise serializers.ValidationError("Invalid or expired token.")
 
     def save(self):
         """
         This function sets the is_active variable on the user to true. It is needed to verify the email address.
         """
-        user = self.validated_data.get("token")
-        user.is_active = True
-        user.save()
+        user = self.context.get('user')
+        if user:
+            user.is_active = True
+            user.save()
+        return user
 
 
 class ResetPasswordSerializer(serializers.Serializer):
