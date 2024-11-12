@@ -20,7 +20,35 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "authentication.tests.test_functions",
+                "authentication.tests",
+            ],
+            "django": true,
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "videoflix_backend.settings"
+            }
+        },
+        {
+            "name": "Django content TEST",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "content.tests",
+            ],
+            "django": true,
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "videoflix_backend.settings"
+            }
+        },
+        {
+            "name": "Django watchHis TEST",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "watch_history.tests",
             ],
             "django": true,
             "env": {

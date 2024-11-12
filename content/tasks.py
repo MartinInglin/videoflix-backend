@@ -50,7 +50,7 @@ def process_resolution(
     video_instance, source, base_name, output_dir, suffix, field_name, resolution
 ):
     """
-    This function starts the process of starts the creation of the the HLS files. In the end it deletes the helper mp4 file. 
+    This function starts the process of starts the creation of the the HLS files. In the end it deletes the helper mp4 file.
     """
     resolution_file = os.path.join(output_dir, f"{base_name}_{suffix}.mp4")
     convert_to_resolution(source, resolution_file, resolution)
@@ -115,7 +115,7 @@ def convert_to_hls(source, output_name_prefix):
 
 # def save_hls_path_to_video_instance(title, m3u8_path):
 #     """
-#     This function 
+#     This function
 #     """
 #     video_instance = Video.objects.get(title=title)
 #     video_instance.hls_playlist = m3u8_path.replace("media/", "")
