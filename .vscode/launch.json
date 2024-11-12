@@ -20,7 +20,7 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "authentication.tests",
+                "authentication.tests.test_functions",
             ],
             "django": true,
             "env": {

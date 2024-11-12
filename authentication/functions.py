@@ -28,18 +28,6 @@ def send_verification_email(request, user):
     )
 
 
-def get_user_from_token(token):
-    """
-    This function gets the user from the token.
-    """
-    try:
-        email = signer.unsign(token)
-        user = User.objects.get(email=email)
-        return user
-    except (BadSignature, SignatureExpired):
-        return None
-
-
 def send_reset_password_email(request, email):
     """
     This function sends the reset password email to the user. The HTML is created in the templates folder.

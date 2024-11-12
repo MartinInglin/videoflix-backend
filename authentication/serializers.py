@@ -16,16 +16,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def create(self):
         """
-        This function checks first if an email already exists in the database. If not it creates a new account as a custom user and returns it.
+        This function creates a new account as a custom user and returns it.
         """
         username = self.validated_data["email"]
         email = self.validated_data["email"]
         password = self.validated_data["password"]
-
-        # if self.emailExists(username):
-        #     raise serializers.ValidationError("error")
-
-        # else:
         account = CustomUser(
             username=username, password=password, email=email, is_active=False
         )
@@ -52,7 +47,7 @@ class UserVerificationSerializer(serializers.Serializer):
         try:
             email = signer.unsign(token, max_age=3600)
             user = User.objects.get(email=email)
-            self.context['user'] = user
+            self.context["user"] = user
             return token
         except (SignatureExpired, BadSignature, User.DoesNotExist) as e:
             print(f"Validation failed: {e}")
@@ -62,7 +57,7 @@ class UserVerificationSerializer(serializers.Serializer):
         """
         This function sets the is_active variable on the user to true. It is needed to verify the email address.
         """
-        user = self.context.get('user')
+        user = self.context.get("user")
         if user:
             user.is_active = True
             user.save()

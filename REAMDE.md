@@ -5,7 +5,8 @@ This backend provides API endpoints for managing video uploads, encoding videos 
 
 ## System requirements
 
-- Python 3.x
+- Linux (tested on Ubuntu 20.04 and higher)
+- Python 3.8
 - Redis
 - FFmpeg (for media processing)
 
@@ -24,6 +25,7 @@ sudo apt install ffmpeg
 git clone https://github.com/MartinInglin/videoflix-backend
 cd videoflix-backend
 ```
+
 2. Set up a virtual environment
    
 ```bash
