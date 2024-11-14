@@ -26,7 +26,6 @@ class DashboardView(APIView):
         """
         try:
             latest_videos = get_latest_videos()
-            print("get_latest_videos called successfully")
             my_videos = get_my_videos(request)
             categories = Video.objects.values_list("category", flat=True).distinct()
             category_videos = get_category_videos(categories)
@@ -58,8 +57,13 @@ class HeroView(APIView):
         video_id = request.query_params.get("id")
 
         if video_id == "-1":
-            latest_video = get_latest_video()
-            return Response(latest_video, status=status.HTTP_200_OK)
+            try:
+                latest_video = get_latest_video()
+                return Response(latest_video, status=status.HTTP_200_OK)
+            except:
+                return Response(
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
 
         else:
             try:

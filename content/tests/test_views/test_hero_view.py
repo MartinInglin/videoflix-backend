@@ -6,8 +6,13 @@ from authentication.models import CustomUser
 from content.models import Video
 from content.serializers import HeroVideoSerializer
 from freezegun import freeze_time
+from unittest.mock import patch
+from django.test import override_settings
 
 
+@override_settings(
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+)
 class HeroViewTests(APITestCase):
 
     @freeze_time("2023-01-01 12:00:00")
@@ -86,3 +91,27 @@ class HeroViewTests(APITestCase):
 
         response = self.client.post(url_with_query, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @patch(
+        "content.views.get_latest_video",
+        side_effect=Exception("Get latest videos failed"),
+    )
+    def test_get_latest_video_fails(self, mock_get_video):
+        hero_id = -1
+        url = reverse("hero")
+        url_with_query = f"{url}?id={hero_id}"
+
+        response = self.client.get(url_with_query, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @patch(
+        "content.views.get_selected_video",
+        side_effect=Exception("Get latest videos failed"),
+    )
+    def test_get_selected_video_fails(self, mock_get_video):
+        hero_id = 1
+        url = reverse("hero")
+        url_with_query = f"{url}?id={hero_id}"
+
+        response = self.client.get(url_with_query, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)

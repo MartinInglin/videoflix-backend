@@ -8,8 +8,12 @@ from content.serializers import DashboardVideoSerializer
 from watch_history.models import WatchHistory
 from freezegun import freeze_time
 from unittest.mock import patch
+from django.test import override_settings
 
 
+@override_settings(
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+)
 class DashboardViewTests(APITestCase):
 
     @freeze_time("2023-01-01 12:00:00")
@@ -67,27 +71,45 @@ class DashboardViewTests(APITestCase):
         self.assertCountEqual(response.data["categories"], self.categories)
         self.assertEqual(response.data["category_videos"], self.categorized_videos)
 
-    # @patch(
-    #     "content.functions.get_latest_videos",
-    #     side_effect=Exception("Get latest videos failed"),
-    # )
-    # def test_get_latest_videos_fails(self, mock_get_videos):
-    #     url = reverse("dashboard")
+    @patch(
+        "content.views.get_latest_videos",
+        side_effect=Exception("Get latest videos failed"),
+    )
+    def test_get_latest_videos_fails(self, mock_get_videos):
+        url = reverse("dashboard")
 
-    #     response = self.client.get(url, format="json")
+        response = self.client.get(url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    #     self.assertEqual(mock_get_videos.called, True)
+    @patch(
+        "content.views.get_my_videos",
+        side_effect=Exception("Get latest videos failed"),
+    )
+    def test_get_my_videos_fails(self, mock_get_videos):
+        url = reverse("dashboard")
 
-    #     self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+        response = self.client.get(url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    # def test_get_my_videos_fails(self):
-    #     pass
+    @patch(
+        "content.models.Video.objects.values_list",
+        side_effect=Exception("Get categories failed"),
+    )
+    def test_get_categories_fails(self, mock_get_categories):
+        url = reverse("dashboard")
 
-    # def test_get_categories_fails(self):
-    #     pass
+        response = self.client.get(url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    # def test_get_category_videos_fails(self):
-    #     pass
+    @patch(
+        "content.views.get_category_videos",
+        side_effect=Exception("Get latest videos failed"),
+    )
+    def test_get_category_videos_fails(self, mock_get_videos):
+        url = reverse("dashboard")
+
+        response = self.client.get(url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def test_invalid_token(self):
         self.token = "123456"

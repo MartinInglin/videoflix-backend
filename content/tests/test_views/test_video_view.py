@@ -8,8 +8,12 @@ from content.serializers import DashboardVideoSerializer, HeroVideoSerializer, V
 from watch_history.models import WatchHistory
 from freezegun import freeze_time
 from unittest.mock import patch
+from django.test import override_settings
 
 
+@override_settings(
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+)
 class HeroViewTests(APITestCase):
 
     @freeze_time("2023-01-01 12:00:00")
@@ -100,3 +104,16 @@ class HeroViewTests(APITestCase):
 
         response = self.client.post(url_with_query, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @patch(
+        "content.views.get_video",
+        side_effect=Exception("Get video failed"),
+    )
+    def test_get_selected_video_fails(self, mock_get_video):
+        video_id = 3
+        resolution = 360
+        url = reverse("video")
+        url_with_query = f"{url}?id={video_id}&resolution={resolution}"
+
+        response = self.client.get(url_with_query, format="json")
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -99,7 +99,7 @@ DATABASES = {
         "NAME": "videoflix",
         "USER": "martin",
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": "localhost",  # Or use your cloud DB host
+        "HOST": "db",  # Or use your cloud DB host
         "PORT": "5432",
     }
 }

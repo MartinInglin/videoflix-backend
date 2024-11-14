@@ -28,14 +28,14 @@ class ResendVerificationEmailTests(APITestCase):
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    # @patch(
-    #     "authentication.functions.send_verification_email",
-    #     side_effect=Exception("Email send error"),
-    # )
-    # def test_send_email_fails(self, mocked_mail):
-    #     url = reverse("resend_verification")
-    #     data = {"email": self.user.email}
+    @patch(
+        "authentication.views.send_verification_email",
+        side_effect=Exception("Email send error"),
+    )
+    def test_send_email_fails(self, mocked_mail):
+        url = reverse("resend_verification")
+        data = {"email": self.user.email}
 
-    #     response = self.client.post(url, data, format="json")
-    #     self.user.refresh_from_db()
-    #     self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        response = self.client.post(url, data, format="json")
+        self.user.refresh_from_db()
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

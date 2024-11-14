@@ -34,7 +34,7 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "content.tests.test_serializers",
+                "content.tests",
             ],
             "django": true,
             "env": {

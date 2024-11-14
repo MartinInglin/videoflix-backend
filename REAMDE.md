@@ -127,8 +127,26 @@ To run tests with a debugger use the python debugger. Adjust launch.json to acce
 
 ## Creating requirements
 
-Create requiremtents.txt with:
+Create requiremtents.txt:
 
 ```bash
-pip-compile requirements.in
+pip freeze > requirements.txt
+sed -i 's/^backports.zoneinfo==.*/backports.zoneinfo==0.2.1; python_version<"3.9"/' requirements.txt
+```
+
+## Docker
+
+Start the server:
+```bash
+sudo docker-compose up -d
+```
+
+Stop the server:
+```bash
+sudo docker-compose down
+```
+
+rebuild images:
+```bash
+sudo docker-compose up --build
 ```

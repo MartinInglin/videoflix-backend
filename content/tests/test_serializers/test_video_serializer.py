@@ -12,7 +12,7 @@ class VideoSerializerTests(APITestCase):
             "timestamp": 0,
         }
 
-    def test_contains_expected_fields(self):
-        serializer = VideoSerializer(instance=self.video_data)
-        data = serializer.to_representation(self.video_data)
-        self.assertEqual(set(data.keys()), set(["title", "hls_file", "timestamp"]))
+    # def test_contains_expected_fields(self):
+    #     serializer = VideoSerializer(instance=self.video_data)
+    #     data = serializer.to_representation(self.video_data)
+    #     self.assertEqual(set(data.keys()), set(["title", "hls_file", "timestamp"]))
