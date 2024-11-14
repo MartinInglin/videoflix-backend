@@ -7,7 +7,7 @@ from content.serializers import (
 from watch_history.models import WatchHistory
 
 
-def get_latest_views():
+def get_latest_videos():
     """
     This function gets the 6 latest videos and serializes them.
     """
@@ -44,7 +44,7 @@ def get_latest_video():
     """
     This function gets the newest video on the database and serializes it.
     """
-    latest_video = Video.objects.order_by("created_at").first()
+    latest_video = Video.objects.order_by("created_at").last()
     video = latest_video
     serializer = HeroVideoSerializer(video)
     return serializer.data

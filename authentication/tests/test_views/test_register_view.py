@@ -43,7 +43,7 @@ class RegistrationTests(APITestCase):
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_email_exists(self):
+    def test_email_already_exists(self):
         url = reverse("registration")
         data = {"password": "password123", "email": "testuser@example.com"}
         CustomUser.objects.get_or_create(

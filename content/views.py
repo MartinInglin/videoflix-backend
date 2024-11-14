@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from content.functions import (
     get_category_videos,
     get_latest_video,
-    get_latest_views,
+    get_latest_videos,
     get_my_videos,
     get_selected_video,
     get_video,
@@ -25,7 +25,8 @@ class DashboardView(APIView):
         This function returns the data for the dashboard. It gets the 6 latest videos, the videos the user has watched, all the categories and the videos sorted by categories.
         """
         try:
-            latest_videos = get_latest_views()
+            latest_videos = get_latest_videos()
+            print("get_latest_videos called successfully")
             my_videos = get_my_videos(request)
             categories = Video.objects.values_list("category", flat=True).distinct()
             category_videos = get_category_videos(categories)
@@ -36,7 +37,8 @@ class DashboardView(APIView):
                     "my_videos": my_videos,
                     "category_videos": category_videos,
                     "categories": categories,
-                }
+                },
+                status=status.HTTP_200_OK,
             )
         except Exception as e:
             return Response(
@@ -85,6 +87,9 @@ class VideoView(APIView):
         video_id = request.query_params.get("id")
         user = request.user
         resolution = request.query_params.get("resolution")
+
+        if not (video_id and resolution):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         try:
             video = get_video(video_id, user, resolution)

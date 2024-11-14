@@ -123,3 +123,12 @@ python manage.py test
 ```
 
 To run tests with a debugger use the python debugger. Adjust launch.json to access specific tests or test groups.
+
+
+## Creating requirements
+
+Create requiremtents.txt with:
+
+```bash
+pip-compile requirements.in
+```

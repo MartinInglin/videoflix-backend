@@ -7,7 +7,6 @@ from authentication.models import CustomUser
 from content.models import Video
 from test_utils import create_mock_image, create_mock_video
 from watch_history.models import WatchHistory
-from watch_history.views import UpdateWatchHistory
 from unittest.mock import patch
 
 
