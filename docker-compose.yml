@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
   web:
     build:
@@ -19,8 +19,8 @@ services:
     command: gunicorn videoflix_backend.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
-    expose:
-      - "8000"
+      - static-data:/usr/src/app/staticfiles
+      - media-data:/usr/src/app/media
     depends_on:
       - db
     environment:
@@ -33,11 +33,48 @@ services:
     container_name: nginx
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - web
     volumes:
+      - static-data:/usr/src/app/staticfiles
+      - media-data:/usr/src/app/media
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./data/nginx:/etc/nginx/conf.d
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    # environment:
+    #   - REDIS_PASSWORD="${REDIS_PASSWORD}"
+    # command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+
+  rq-worker:
+    build:
+      context: .
+      dockerfile: rq-worker/Dockerfile
+    command: python manage.py rqworker default
+    volumes:
+      - .:/usr/src/app
+      - media-data:/usr/src/app/media
+    depends_on:
+      - redis
+    environment:
+      DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+      REDIS_PASSWORD: "${REDIS_PASSWORD}"
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+    - ./data/certbot/conf:/etc/letsencrypt
+    - ./data/certbot/www:/var/www/certbot
+    entrypoint: /bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'
+
 
 volumes:
-  pgdata:
+  postgres-data:
+  static-data:
+  media-data:
 

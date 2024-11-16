@@ -2,13 +2,20 @@ import os
 from datetime import date
 from django.db import models
 
+import logging
+
+from videoflix_backend.settings import MEDIA_ROOT
+logger = logging.getLogger(__name__)
+
 
 def video_upload_to(instance, filename):
     """
     This function removes all empty spaces and replaces them with underscores. Then it creates the new path.
     """
     title_path = instance.title.replace(" ", "_")
-    return os.path.join("videos", title_path, filename)
+    upload_path = os.path.join("videos", title_path, filename)
+    logger.debug(f"Video upload path: {upload_path}")
+    return upload_path
 
 
 def thumbnail_upload_to(instance, filename):
@@ -16,7 +23,9 @@ def thumbnail_upload_to(instance, filename):
     This function removes all empty spaces and replaces them with underscores. Then it creates the new path.
     """
     title_path = instance.title.replace(" ", "_")
-    return os.path.join("thumbnails", title_path, filename)
+    upload_path = os.path.join("thumbnails", title_path, filename)
+    logger.debug(f"Video upload path: {upload_path}")
+    return upload_path
 
 
 class Video(models.Model):

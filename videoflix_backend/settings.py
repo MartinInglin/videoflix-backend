@@ -139,21 +139,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static/staticfiles")
+STATIC_URL = "/static/"
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/staticfiles")
+STATIC_ROOT = "/usr/src/app/staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = "/usr/src/app/media"
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://redis:6379/1",
         "OPTIONS": {
             "PASSWORD": os.getenv("REDIS_PASSWORD"),
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -170,7 +172,7 @@ CACHE_TTL = 60 * 15
 
 RQ_QUEUES = {
     "default": {
-        "HOST": "127.0.0.1",
+        "HOST": "redis",
         "PORT": 6379,
         "DB": 0,
         "PASSWORD": os.getenv("RQ_PASSWORD"),
@@ -200,3 +202,17 @@ EMAIL_USE_TLS = False  # Disable TLS, since SSL is enabled
 EMAIL_HOST_USER = "videoflix@martin-inglin.ch"  # Your full Hoststar email address
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "videoflix@martin-inglin.ch"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    },
+}

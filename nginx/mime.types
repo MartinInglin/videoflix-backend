@@ -1,0 +1,5 @@
+types {
+    text/css  css;
+    application/javascript  js;
+    # other MIME types
+}
