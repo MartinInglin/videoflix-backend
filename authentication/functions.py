@@ -14,7 +14,7 @@ def send_verification_email(request, user):
     """
     token = signer.sign(user.email)
     subject = "Confirm your email"
-    verification_url = f"http://127.0.0.1:4200/verification/{token}"
+    verification_url = f"https://videoflix.martin-inglin.ch/verification/{token}"
     html_message = render_to_string(
         "verification_email.html", {"user": user, "verification_url": verification_url}
     )
@@ -34,7 +34,7 @@ def send_reset_password_email(request, email):
     """
     token = signer.sign(email)
     subject = "Reset Videoflix password"
-    reset_password_url = f"http://127.0.0.1:4200/reset-password/{token}"
+    reset_password_url = f"https://videoflix.martin-inglin.ch/reset-password/{token}"
     html_message = render_to_string(
         "reset_password_email.html", {"reset_password_url": reset_password_url}
     )

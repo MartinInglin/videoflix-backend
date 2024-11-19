@@ -10,10 +10,12 @@ from content.functions import (
     get_latest_videos,
     get_my_videos,
     get_selected_video,
+    get_user_timestamp,
     get_video,
 )
 from content.models import Video
 from rest_framework import status
+from django.core.cache import cache
 
 CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 
@@ -82,7 +84,6 @@ class HeroView(APIView):
                 )
 
 
-@method_decorator(cache_page(CACHE_TTL), name="dispatch")
 class VideoView(APIView):
     def get(self, request):
         """
@@ -94,9 +95,18 @@ class VideoView(APIView):
 
         if not (video_id and resolution):
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        cache_key = f"video_{video_id}_{resolution}"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            cached_data["timestamp"] = get_user_timestamp(user, video_id)
+            return Response(cached_data, status=status.HTTP_200_OK)
 
         try:
             video = get_video(video_id, user, resolution)
+            cache.set(cache_key, video, CACHE_TTL)
+            video["timestamp"] = get_user_timestamp(user, video_id)
             return Response(video, status=status.HTTP_200_OK)
 
         except Video.DoesNotExist:

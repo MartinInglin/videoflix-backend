@@ -28,12 +28,12 @@ class ResetPasswordEmailTests(TestCase):
         self.assertEqual(email.subject, "Reset Videoflix password")
         self.assertEqual(email.to, [self.user.email])
         token = signer.sign(self.user.email)
-        expected_url = f"http://127.0.0.1:4200/reset-password/{token}"
+        expected_url = f"https://videoflix.martin-inglin.ch/reset-password/{token}"
         self.assertIn(expected_url, email.alternatives[0][0]) 
 
     def test_email_uses_correct_template(self):
         token = signer.sign(self.user.email)
-        expected_url = f"http://127.0.0.1:4200/reset-password/{token}"
+        expected_url = f"https://videoflix.martin-inglin.ch/reset-password/{token}"
         expected_html = render_to_string(
             "reset_password_email.html", {"reset_password_url": expected_url}
         )

@@ -4,8 +4,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.authtoken.models import Token
 from authentication.models import CustomUser
 from content.models import Video
-from content.serializers import DashboardVideoSerializer, HeroVideoSerializer, VideoSerializer
-from watch_history.models import WatchHistory
+from content.serializers import  VideoSerializer
 from freezegun import freeze_time
 from unittest.mock import patch
 from django.test import override_settings
@@ -46,10 +45,11 @@ class HeroViewTests(APITestCase):
         for i, video in enumerate(self.videos):
             category = self.categories[i % len(self.categories)]
             video.category = category
-            serialized_video = VideoSerializer(video)
-            self.categorized_videos[category].append(serialized_video.data)
+            serialized_video = VideoSerializer(video).data
+            self.categorized_videos[category].append(serialized_video)
 
         self.video = VideoSerializer(self.videos[2]).data
+        self.video["timestamp"] = 0
 
     def test_get_video(self):
         video_id = 3

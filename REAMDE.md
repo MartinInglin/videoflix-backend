@@ -150,3 +150,7 @@ rebuild images:
 ```bash
 sudo docker-compose up --build
 ```
+or
+```bash
+sudo docker build -t <image_name>:latest .
+```

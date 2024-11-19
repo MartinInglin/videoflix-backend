@@ -113,15 +113,6 @@ def convert_to_hls(source, output_name_prefix):
     return m3u8_file
 
 
-# def save_hls_path_to_video_instance(title, m3u8_path):
-#     """
-#     This function
-#     """
-#     video_instance = Video.objects.get(title=title)
-#     video_instance.hls_playlist = m3u8_path.replace("media/", "")
-#     video_instance.save()
-
-
 def delete_mp4(resolution_file):
     """
     This function deletes the mp4 file that is created for creating the HLS files.

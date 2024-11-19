@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "34.65.54.74",
     "videoflix-backend.martin-inglin.ch",
     "localhost:4200",
+    "videoflix.martin-inglin.ch",
 ]
 
 
@@ -99,7 +100,7 @@ DATABASES = {
         "NAME": "videoflix",
         "USER": "martin",
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": "db",  # Or use your cloud DB host
+        "HOST": "db",
         "PORT": "5432",
     }
 }
@@ -140,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "/static/"
-#STATIC_ROOT = os.path.join(BASE_DIR, "static/staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/staticfiles")
 STATIC_ROOT = "/usr/src/app/staticfiles"
 
 # Default primary key field type
@@ -149,7 +150,7 @@ STATIC_ROOT = "/usr/src/app/staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
-#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_ROOT = "/usr/src/app/media"
 
 CACHES = {
@@ -191,15 +192,26 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
+# CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
+CORS_ALLOWED_ORIGINS = ["https://videoflix.martin-inglin.ch"]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://videoflix.martin-inglin.ch",
+    "https://videoflix-backend.martin-inglin.ch",
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
 
 load_dotenv()
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "lx39.hoststar.hosting"  # Replace `#` with your server number
+EMAIL_HOST = "lx39.hoststar.hosting"
 EMAIL_PORT = 465
-EMAIL_USE_SSL = True  # Use SSL for port 465
-EMAIL_USE_TLS = False  # Disable TLS, since SSL is enabled
-EMAIL_HOST_USER = "videoflix@martin-inglin.ch"  # Your full Hoststar email address
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = "videoflix@martin-inglin.ch"
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "videoflix@martin-inglin.ch"
 

@@ -28,12 +28,12 @@ class SendVerificationEmailTests(TestCase):
         self.assertEqual(email.subject, "Confirm your email")
         self.assertEqual(email.to, [self.user.email])
         token = signer.sign(self.user.email)
-        expected_url = f"http://127.0.0.1:4200/verification/{token}"
+        expected_url = f"https://videoflix.martin-inglin.ch/verification/{token}"
         self.assertIn(expected_url, email.alternatives[0][0]) 
 
     def test_email_uses_correct_template(self):
         token = signer.sign(self.user.email)
-        expected_url = f"http://127.0.0.1:4200/verification/{token}"
+        expected_url = f"https://videoflix.martin-inglin.ch/verification/{token}"
         expected_html = render_to_string(
             "verification_email.html", {"user": self.user, "verification_url": expected_url}
         )

@@ -68,3 +68,14 @@ def get_video(video_id, user, resolution):
         video, context={"user": user, "resolution": resolution}
     )
     return serializer.data
+
+
+def get_user_timestamp(user, video_id):
+    """
+    Fetches the watch history timestamp for a specific user and video.
+    """
+    try:
+        watch_history = WatchHistory.objects.get(user=user, video_id=video_id)
+        return watch_history.timestamp
+    except WatchHistory.DoesNotExist:
+        return 0
