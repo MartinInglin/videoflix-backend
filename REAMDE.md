@@ -146,11 +146,21 @@ Stop the server:
 sudo docker-compose down
 ```
 
-rebuild images:
+Rebuild images:
 ```bash
 sudo docker-compose up --build
 ```
 or
 ```bash
 sudo docker build -t <image_name>:latest .
+```
+
+Run docker container locally:
+```bash
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+Enter docker container:
+```bash
+docker excec -it <nameOrIdOfContainer> bash
 ```

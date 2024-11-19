@@ -20,27 +20,36 @@ from django.core.cache import cache
 CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 
 
-@method_decorator(cache_page(CACHE_TTL), name="dispatch")
 class DashboardView(APIView):
     def get(self, request):
         """
         This function returns the data for the dashboard. It gets the 6 latest videos, the videos the user has watched, all the categories and the videos sorted by categories.
         """
-        try:
-            latest_videos = get_latest_videos()
-            my_videos = get_my_videos(request)
-            categories = Video.objects.values_list("category", flat=True).distinct()
-            category_videos = get_category_videos(categories)
+        user = request.user
+        cache_key = f"dashboard_{user.id}"
+        cached_data = cache.get(cache_key)
 
-            return Response(
-                {
+        try:
+            if cached_data:
+                cached_data["my_videos"] = get_my_videos(request)
+                return Response(cached_data, status=status.HTTP_200_OK)
+
+            else:
+                latest_videos = get_latest_videos()
+                my_videos = get_my_videos(request)
+                categories = Video.objects.values_list("category", flat=True).distinct()
+                category_videos = get_category_videos(categories)
+
+                response_data = {
                     "latest_videos": latest_videos,
                     "my_videos": my_videos,
                     "category_videos": category_videos,
                     "categories": categories,
-                },
-                status=status.HTTP_200_OK,
-            )
+                }
+                cache.set(cache_key, response_data, CACHE_TTL)
+
+            return Response(response_data, status=status.HTTP_200_OK)
+
         except Exception as e:
             return Response(
                 {
@@ -95,19 +104,19 @@ class VideoView(APIView):
 
         if not (video_id and resolution):
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        
+
         cache_key = f"video_{video_id}_{resolution}"
         cached_data = cache.get(cache_key)
 
-        if cached_data:
-            cached_data["timestamp"] = get_user_timestamp(user, video_id)
-            return Response(cached_data, status=status.HTTP_200_OK)
-
         try:
-            video = get_video(video_id, user, resolution)
-            cache.set(cache_key, video, CACHE_TTL)
-            video["timestamp"] = get_user_timestamp(user, video_id)
-            return Response(video, status=status.HTTP_200_OK)
+            if cached_data:
+                cached_data["timestamp"] = get_user_timestamp(user, video_id)
+                return Response(cached_data, status=status.HTTP_200_OK)
+            else:
+                video = get_video(video_id, user, resolution)
+                cache.set(cache_key, video, CACHE_TTL)
+                video["timestamp"] = get_user_timestamp(user, video_id)
+                return Response(video, status=status.HTTP_200_OK)
 
         except Video.DoesNotExist:
             return Response(
