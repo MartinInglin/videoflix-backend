@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-eu)9^yas6#n+jxk@+i9=a@^*pw=!2))b432=so4_=i+-eg*yl-"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "34.65.54.74",
+    "34.65.5.251",
     "videoflix-backend.martin-inglin.ch",
     "localhost:4200",
     "videoflix.martin-inglin.ch",
