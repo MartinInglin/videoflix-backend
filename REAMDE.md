@@ -154,6 +154,11 @@ or
 ```bash
 sudo docker build -t <image_name>:latest .
 ```
+for creating the nginx and rq-worker images you need to add the path to the Dockerfile
+```bash
+docker build -f rq-worker/Dockerfile -t europe-west6-docker.pkg.dev/videoflix-439014/videoflix/rq-worker-image:latest .
+docker build -t europe-west6-docker.pkg.dev/videoflix-439014/videoflix/nginx-image:latest -f nginx/Dockerfile .
+```
 
 Run docker container locally:
 ```bash

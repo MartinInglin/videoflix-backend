@@ -7,4 +7,5 @@ FROM nginx:latest
 RUN mkdir -p /etc/nginx/
 
 # Copy the custom Nginx configuration file into the container
-COPY nginx.conf /etc/nginx/
+COPY nginx/nginx.conf /etc/nginx/
+
